@@ -1,2 +1,2 @@
 # rebel-libraries
-Libraries, programs, and files written in mlatu
+Libraries, and rulesets written in mlatu

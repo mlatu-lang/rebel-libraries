@@ -1,31 +1,31 @@
-zero = (Z) ;
-succ = > (S) , ;
+zero = (Z) .
+succ = > (S) , .
 
-Z ISZ = Y ;
-S ISZ = - N ;
+Z ISZ = Y .
+S ISZ = - N .
 
-zero? = < ISZ ; 
+zero? = < ISZ . 
 
-Z ADD = ;
-S ADD = < ADD succ ;
+Z ADD = .
+S ADD = < ADD succ .
 
-add = < ADD ;
+add = < ADD .
 
-Z MUL = - zero ;
-S MUL = > ( + ) ~ , < < MUL add ;
+Z MUL = - zero .
+S MUL = > ( + ) ~ , < < MUL add .
 
-mul = < MUL ;
+mul = < MUL .
 
-0 = zero ;
-1 = zero succ ;
-2 = zero succ succ ;
-3 = zero succ succ succ ;
-4 = zero succ succ succ succ ;
-5 = zero succ succ succ succ succ ;
-6 = zero succ succ succ succ succ succ ;
-7 = zero succ succ succ succ succ succ succ ;
-8 = zero succ succ succ succ succ succ succ succ ;
-9 = zero succ succ succ succ succ succ succ succ succ ;
+0 = zero .
+1 = zero succ .
+2 = zero succ succ .
+3 = zero succ succ succ .
+4 = zero succ succ succ succ .
+5 = zero succ succ succ succ succ .
+6 = zero succ succ succ succ succ succ .
+7 = zero succ succ succ succ succ succ succ .
+8 = zero succ succ succ succ succ succ succ succ .
+9 = zero succ succ succ succ succ succ succ succ succ .
 100 = zero 
  succ succ succ succ succ succ succ succ succ succ
  succ succ succ succ succ succ succ succ succ succ
@@ -36,4 +36,4 @@ mul = < MUL ;
  succ succ succ succ succ succ succ succ succ succ
  succ succ succ succ succ succ succ succ succ succ
  succ succ succ succ succ succ succ succ succ succ
- succ succ succ succ succ succ succ succ succ succ ;
+ succ succ succ succ succ succ succ succ succ succ .

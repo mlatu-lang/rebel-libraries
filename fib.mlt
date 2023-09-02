@@ -2,18 +2,18 @@
 # ==================
 
 # the basic idea is that you type n xs, then an f
-# then, it will "push" the fib(n) fs to the other side of the xs
+# then, it will "push" fib(n) fs to the other side of the xs
 x f = f x.            # fib(1) = 1 (push a single f to the other side of the x)
 # x x f = f x x.      # fib(2) = 1 (push a single f to the other side of the xs)
-#                       this isn't needed since it's just a special case of the first rule
-x x x f = x f x f x.  # fib(n) = fib(n-1) + fib(n-2)
+#                       this fib(2) line isn't needed since it's just a special case of the first rule
+x x x f = x f x f x.  # fib(n) = fib(n-2) + fib(n-1)
 # we place one f 2 xs to the left of the original f, and another f 1 x to the left
 # the first new f will move fib(n-2) fs to the very left, then the second will move fib(f-1) fs to the very left
 # try it out! how about fib(10):
 # x x x x x x x x x x f
 
-# now we just need to get rid of those pesky xs that linger all along
-# let's define a fib word that first adds the f, then a g(arbageman) that will always be at the very end
+# now we just need to get rid of those pesky xs that linger in the end result
+# let's define a rule that first adds the f, then a g(arbageman) that will always be at the very end
 fib = f g.
 # when an x is at the very end, just next to the garbageman, he perishes
 x g = g.

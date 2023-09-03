@@ -3,3 +3,8 @@ swizzle = >,>,+,<->,<.
 
 # (a) (b) xch |-> (b) (a)
 xch = >(->)(-) swizzle swizzle.
+
+# in other words, ~ doesn't need to be a builtin combinator, as it can be made from the others
+# however, this is less fun
+# also impractical, since it would take 28 more rewrites for every swap
+# (though no one's claiming mlatu is practical!)

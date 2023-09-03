@@ -1,0 +1,40 @@
+# joy's names for the builtin mlatu combinators
+zap   = -.
+dup   = +.
+unit  = >.
+i     = <.
+cat   = ,.
+# swap is already called swap
+
+swapd = (~)dip.
+dupd  = (+)dip.
+over  = dupd~.
+rot   = swapd~.
+2rot  = rot rot.
+# (a) (b) keep |-> (a) b (a)
+keep  = over(<)dip.
+# (a) (b) (c) bi |-> (a) b (a) c
+bi    = (keep)dip<.
+
+# some more joy combinators
+dip     = ~>,<.
+cons    = (>)dip,.
+sip     = keep.
+
+dig1 = () cons dip.      # == swap
+dig2 = () cons cons dip. # == rot
+dig3 = () cons cons cons dip.
+dig4 = () cons cons cons cons dip.
+dig5 = () cons cons cons cons cons dip.
+
+bury1 = (() cons) dip swap i.      # == swap
+bury2 = (() cons cons) dip swap i. # == 2rot
+bury3 = (() cons cons cons) dip swap i.
+bury4 = (() cons cons cons cons) dip swap i.
+bury5 = (() cons cons cons cons cons) dip swap i.
+
+take  = ~>,.
+flip2 = unit dip.
+flip3 = unit take dip.
+flip4 = unit take take dip.
+flip5 = unit take take take dip.

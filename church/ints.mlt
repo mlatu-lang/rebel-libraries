@@ -1,0 +1,27 @@
+#wield church/nats.mlt
+#wield church/pairs.mlt
+
+# pos neg pair
+0_I    = 0_N+pair.
+succ_I = (succ_N) @car.
+pred_I = (succ_N) @cdr.
+# add_I  = ((car) bi* add_N) ((cdr) bi* add_N) bi pair.
+# (p1 + n1)(p2 + n2) = p1p2 + p1n2 + n1p2 + n1n2
+
+
+0 = 0_I. 1 = 0 succ. 2 = 1 succ. 3 = 2 succ. 4 = 3 succ. 5 = 4 succ. 6 = 5 succ. 7 = 6 succ. 8 = 7 succ. 9 = 8 succ. 10 = 9 succ.
+_1 = 0 pred. _2 = _1 pred. _3 = _2 pred. _4 = _3 pred. _5 = _4 pred. _6 = _5 pred. _7 = 6 pred. _8 = _7 pred. _9 = _8 pred. _10 = _9 pred.
+
+negative? = reduce_I ()~< ~ bigger?_N.
+
+# reduces an integer to the form N 0 pair or 0 N pair
+reduce_I = 0_I ~ (car(pos_I)~<<) (cdr(neg_I)~<<) bi reduce_I_cap.
+pos_I neg_I = .
+pos_I reduce_I_cap = reduce_I_cap succ.
+neg_I reduce_I_cap = reduce_I_cap pred.
+reduce_I_cap = .
+
+base ten int = (negative?((-))((+))if)(reduce_I ()~< add_N base ten) bi.
+
+succ = succ_I.
+pred = pred_I.

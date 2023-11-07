@@ -9,32 +9,56 @@ cat   = ,.
 swapd = (~)dip.
 dupd  = (+)dip.
 over  = dupd~.
+oover = (over)dip~.
 rot   = swapd~.
 2rot  = rot rot.
-# (a) (b) keep |-> (a) b (a)
-keep  = over(<)dip.
-# (a) (b) (c) bi |-> (a) b (a) c
-bi    = (keep)dip<.
 
 # some more joy combinators
-dip     = ~>,<.
-cons    = (>)dip,.
-sip     = keep.
+dip  = ~>,<.
+cons = (>)dip,.
+sip  = keep.
 
-dig1 = () cons dip.      # == swap
-dig2 = () cons cons dip. # == rot
-dig3 = () cons cons cons dip.
-dig4 = () cons cons cons cons dip.
-dig5 = () cons cons cons cons cons dip.
+dig1 = unit dip.      # == swap
+dig2 = unit cons dip. # == rot
+dig3 = unit cons cons dip.
+dig4 = unit cons cons cons dip.
+dig5 = unit cons cons cons cons dip.
 
-bury1 = (() cons) dip swap i.      # == swap
-bury2 = (() cons cons) dip swap i. # == 2rot
-bury3 = (() cons cons cons) dip swap i.
-bury4 = (() cons cons cons cons) dip swap i.
-bury5 = (() cons cons cons cons cons) dip swap i.
+bury1 = (unit) dip swap i.      # == swap
+bury2 = (unit cons) dip swap i. # == 2rot
+bury3 = (unit cons cons) dip swap i.
+bury4 = (unit cons cons cons) dip swap i.
+bury5 = (unit cons cons cons cons) dip swap i.
 
 take  = ~>,.
 flip2 = unit dip.
 flip3 = unit take dip.
 flip4 = unit take take dip.
 flip5 = unit take take take dip.
+
+dip0 = (()) dip dip i.
+dip1 = (unit) dip dip i.
+dip2 = (unit cons) dip dip i.
+dip3 = (unit cons cons) dip dip i.
+dip4 = (unit cons cons cons) dip dip i.
+dip5 = (unit cons cons cons cons) dip dip i.
+
+swat = swap cat.
+sip0 = i. # i couldn't get any of the sipn definitions to work for 0 nicely
+sip1 = (unit) dip (i) swat sip i.
+sip2 = (unit cons) dip (i) swat sip i.
+sip3 = (unit cons cons) dip (i) swat sip i.
+sip4 = (unit cons cons cons) dip (i) swat sip i.
+sip5 = (unit cons cons cons cons) dip (i) swat sip i.
+
+# factor combinators
+# (a) (b) (f) (g) bi* = (a) f (b) g
+bi*  = (dip)dip<.
+# (a) (b) (f) bi* = (a) f (b) f
+bi@  = +bi*.
+# (a) (f) (g) bi |-> (a) f (a) g
+bi   = (+)dip2 bi*.
+# (a) (f) keep |-> (a) f (a)
+keep  = over(<)dip.
+# (a) (f) keep* |-> (a) f (f)
+keep* = +(<)dip.

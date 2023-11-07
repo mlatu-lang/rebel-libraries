@@ -1,0 +1,53 @@
+# CAR AND CDR =/= NOSE AND TAIL
+# since mlatu uses snoc lists
+
+#wield church/nats.mlt
+#wield church/pairs.mlt
+#wield combinators.mlt
+#wield church/bools.mlt
+
+# snoc lists are used in mlatu
+# in other words, the list  [(a), (b), (c)]  is represented as  nil (c) pair (b) pair (a) pair
+# or in lispy terms,  (((nil . (c)) . (b)) . (a))
+# or (c) (b) (a) 3list
+nose  = cdr.
+tail  = car.
+nil   = (-true).
+isNil = (--false)~<.
+
+# boop the nose!
+# xs x pair boop -> xs x
+boop = ()~<.
+
+1list = (nil)  dip pair.
+2list = (1list)dip pair.
+3list = (2list)dip pair.
+4list = (3list)dip pair.
+5list = (4list)dip pair.
+# 3 nlist = 3list etc.
+nlist = (nil)~ ((dip pair)cons)~ <<<.
+
+# nilCase consCase lRec
+# and it will give you a function
+lRec = ~>~>, (+isNil)~, (if),.
+
+# dumps the list to the stack, for debugging/printing
+dump list = (-) (boop(dump list)dip) lRec<.
+# also unquotes everything TODO FIX
+dump dump list = (-) (boop(dump dump list)dip<) lRec<.
+
+# xs x append
+append  = over isNil (pair) ((boop~)dip append ~pair) if.
+reverse = () (boop (reverse)dip append) lRec<.
+
+# xs f map
+map = over isNil (-) ((boop)dip keep* swapd map ~pair) if.
+# xs f id fold
+fold = (>(,), map)dip foldH.
+# xs' id foldH (don't use manually)
+foldH = over isNil (~-) ((boop)dip~<foldH) if.
+length = (-succ) 0 fold.
+
+test = (1) (2) (3) (4) 4list.
+
+iota = 0 1list~ (+nose succ pair)~ << boop-.

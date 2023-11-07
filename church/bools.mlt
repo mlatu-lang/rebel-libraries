@@ -1,0 +1,16 @@
+#wield combinators.mlt
+
+# church booleans:
+# (a) (b) true <  |->  (a)
+# (a) (b) false<  |->  (b)
+true  = (-).
+false = (~-).
+not   = (~)~,.
+and   = +<.
+or    = +swapd<.
+xor   = (~)~()~<~,.
+
+# bool (trueCase) (falseCase) if
+# will execute whichever the bool corresponds to
+if = rot<<.
+dump bool = (ABSOLUTE TRUTH)(A VILLAINOUS FALLACY)if.

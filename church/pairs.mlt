@@ -1,0 +1,18 @@
+#wield combinators.mlt
+
+# church pairs:
+# (f) (a) (b) pair<  |->  (a) (b) f
+# (a) (b) pair       |->  ( ((a) (b)) ~ (<) dip < )
+# pair should really be called cons, but cons is already a combinator
+pair = ~>~>,>(~(<)dip<),.
+car  = ( -)~<.
+cdr  = (~-)~<.
+
+# (a) (b) pair (f) @car -> (a) f (b) pair
+@car = >(dip pair),~<.
+# (a) (b) pair (f) @cdr -> (a) (b) f pair
+@cdr =  (    pair),~<.
+# (a) (b) pair (f) (g) bimap -> (a) f (b) g pair
+bimap = (@car) dip @cdr.
+
+dump pair = ()~<.

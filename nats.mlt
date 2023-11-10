@@ -1,18 +1,20 @@
+#wield combinators.mlt
+
 zero = (Z) .
-succ = > (S) , .
+succ = > .
 
 Z ISZ = Y .
-S ISZ = - N .
+  ISZ = - N .
 
 zero? = < ISZ .
 
 Z ADD = .
-S ADD = < ADD succ .
+  ADD = < ADD > . # RHS should be  add succ  , but it's inlined for speed
 
 add = < ADD .
 
 Z MUL = - zero .
-S MUL = > ( + ) ~ , < < MUL add .
+  MUL = dupd mul add.
 
 mul = < MUL .
 
